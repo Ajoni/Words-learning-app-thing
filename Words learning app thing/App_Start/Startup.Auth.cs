@@ -5,6 +5,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
+using Words_learning_app_thing.Data;
 using Words_learning_app_thing.Models;
 
 namespace Words_learning_app_thing

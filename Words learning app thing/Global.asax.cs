@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Words_learning_app_thing.Helpers;
 
 namespace Words_learning_app_thing
 {
@@ -16,6 +17,13 @@ namespace Words_learning_app_thing
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-        }
+			var ioc = IoC.GetInstance();
+			ioc.Register<Interface1, Class1>();
+			//ioc.Register<IControllerFactory, ControllerFactory>();
+			//ioc.Register<ITempDataProviderFactory, ITempDataProviderFactory>();
+			//ioc.Register<IControllerActivator, ControllerA>();
+			//DependencyResolver.SetResolver(ioc);
+			ControllerBuilder.Current.SetControllerFactory(typeof(DIControllerFactory));
+		}
     }
 }

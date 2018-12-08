@@ -201,6 +201,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Class1.cs" />
+    <Compile Include="Helpers\DIControllerFactory.cs" />
+    <Compile Include="Helpers\Interface1.cs" />
+    <Compile Include="Helpers\IoC.cs" />
     <Compile Include="Models\Jezyk.cs" />
     <Compile Include="Models\Nauka.cs" />
     <Compile Include="Models\Pytanie.cs" />
