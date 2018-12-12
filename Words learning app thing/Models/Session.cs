@@ -27,7 +27,43 @@ namespace Words_learning_app_thing.Models
 
 		class SessionIterator : ISessionIterator
 		{
+			private int _index { get; set; }
+			private Session _session{ get; set; }
+			private SessionStrategy _strategy{ get; set; }
 
+			public SessionIterator(Session session)
+			{
+				_session = session;
+			}
+			public void First()
+			{
+				throw new NotImplementedException();
+			}
+
+			public Question GetCurrent()
+			{
+				throw new NotImplementedException();
+			}
+
+			public bool HasNext()
+			{
+				throw new NotImplementedException();
+			}
+
+			public bool HasPrev()
+			{
+				throw new NotImplementedException();
+			}
+
+			public void Next()
+			{
+				throw new NotImplementedException();
+			}
+
+			public void Prev()
+			{
+				throw new NotImplementedException();
+			}
 		}
 	}
 }
