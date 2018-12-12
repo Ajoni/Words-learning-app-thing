@@ -5,9 +5,10 @@ using System.Web;
 
 namespace Words_learning_app_thing.Models
 {
-    public interface StrategiaSesji
+    public class Word
     {
-        void KolejnePytanie(Sesja context);
-        void PoprzedniePytanie(Sesja context);
+		public int Id { get; set; }
+		public List<Word> Translations { get; set; }
+        public Language Language { get; set; }
     }
 }
