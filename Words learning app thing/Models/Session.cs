@@ -47,8 +47,6 @@ namespace Words_learning_app_thing.Models
 
 			public bool HasNext()
 			{
-				if (!_strategy.CanGoToNext(_session.Questions[_index]))
-					return false;
 				return _index < _session.Questions.Count;
 			}
 
@@ -59,7 +57,8 @@ namespace Words_learning_app_thing.Models
 
 			public void Next()
 			{
-				_index++;
+				if (_strategy.CanGoToNext(_session.Questions[_index]))
+					_index++;
 				throw new NotImplementedException();
 			}
 
