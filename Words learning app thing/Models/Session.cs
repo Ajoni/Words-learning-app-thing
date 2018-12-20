@@ -12,7 +12,7 @@ namespace Words_learning_app_thing.Models
         public int Id { get; set; }
         public int Score { get; set; }
 		public SessionType SessionType { get; set; }
-        public SessionStrategy Strategy { get; set; }
+        public ISessionStrategy Strategy { get; set; }
 		public Lvl Lvl { get; set; }
 
 		public Language KnownLanguage { get; set; }
@@ -22,14 +22,14 @@ namespace Words_learning_app_thing.Models
 
 		public ISessionIterator GetEnumerator()
 		{
-			throw new NotImplementedException();
+			return new SessionIterator(this);
 		}
 
 		class SessionIterator : ISessionIterator
 		{
 			private int _index { get; set; }
 			private Session _session{ get; set; }
-			private SessionStrategy _strategy{ get; set; }
+			private ISessionStrategy _strategy{ get; set; }
 
 			public SessionIterator(Session session)
 			{
@@ -42,26 +42,30 @@ namespace Words_learning_app_thing.Models
 
 			public Question GetCurrent()
 			{
-				throw new NotImplementedException();
+				return _session.Questions[_index];
 			}
 
 			public bool HasNext()
 			{
-				throw new NotImplementedException();
+				if (!_strategy.CanGoToNext(_session.Questions[_index]))
+					return false;
+				return _index < _session.Questions.Count;
 			}
 
 			public bool HasPrev()
 			{
-				throw new NotImplementedException();
+				return _index > 0;
 			}
 
 			public void Next()
 			{
+				_index++;
 				throw new NotImplementedException();
 			}
 
 			public void Prev()
 			{
+				_index--;
 				throw new NotImplementedException();
 			}
 		}

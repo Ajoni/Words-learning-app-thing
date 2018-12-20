@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Words_learning_app_thing.Models
 {
-    public interface SessionStrategy
+    public interface ISessionStrategy
     {
 		bool CanGoToNext(Question current);
 
