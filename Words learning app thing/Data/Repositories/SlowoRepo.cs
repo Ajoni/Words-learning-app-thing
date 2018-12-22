@@ -16,32 +16,32 @@ namespace Words_learning_app_thing.Data.Repositories
             this.context = context;
         }
 
-        public Word Get(int Id)
+        public Slowo Get(int Id)
         {
             return context.Slowa.Find(Id);
         }
 
-        public List<Word> GetAll(Language jezyk)
+        public List<Slowo> GetAll(Jezyk jezyk)
         {
-            return (List<Word>)context.Slowa.ToList().Where(w => w.Language == jezyk);
+            return (List<Slowo>)context.Slowa.ToList().Where(w => w.Jezyk == jezyk);
         }
 
-        public List<Word> GetTlumaczenia(Word slowo, Language jezyk)
+        public List<Slowo> GetTlumaczenia(Slowo slowo, Jezyk jezyk)
         {
-            return (List<Word>)slowo.Translations.Where(w => w.Language == jezyk);
+            return (List<Slowo>)slowo.Tlumaczenia.Where(w => w.Jezyk == jezyk);
         }
 
-        public void Add(Word slowo)
+        public void Add(Slowo slowo)
         {
             context.Slowa.Add(slowo);
         }
 
-        public void Update(Word slowo)
+        public void Update(Slowo slowo)
         {
             context.Entry(slowo).State = EntityState.Modified;
         }
 
-        public void Remove(Word slowo)
+        public void Remove(Slowo slowo)
         {
             context.Slowa.Remove(slowo);
         }

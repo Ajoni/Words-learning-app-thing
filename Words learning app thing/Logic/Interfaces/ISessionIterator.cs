@@ -7,6 +7,6 @@
 		void Prev();
 		bool HasPrev();
 		bool HasNext();
-		Question GetCurrent();
+		Pytanie GetCurrent();
 	}
 }

@@ -8,8 +8,8 @@ namespace Words_learning_app_thing.ViewModels
 {
 	public class QuestionWithSelectViewModel
 	{
-		public Word ToTranslate { get; set; }
-		public List<Word> Choices { get; set; }
+		public Slowo ToTranslate { get; set; }
+		public List<Slowo> Choices { get; set; }
 		public string Answer { get; set; }
 	}
 }

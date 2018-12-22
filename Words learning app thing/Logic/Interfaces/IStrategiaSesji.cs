@@ -5,9 +5,8 @@ using System.Web;
 
 namespace Words_learning_app_thing.Models
 {
-    public class Language
+    public interface IStrategiaSesji
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-    }
+		bool CzyMozeDoKolejnego(Pytanie obecne);
+	}
 }

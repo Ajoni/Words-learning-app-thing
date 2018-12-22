@@ -8,7 +8,7 @@ namespace Words_learning_app_thing.ViewModels
 {
 	public class QuestionWithInputViewModel
 	{
-		public Word ToTranslate { get; set; }
+		public Slowo ToTranslate { get; set; }
 		public string Answer { get; set; }
 	}
 }

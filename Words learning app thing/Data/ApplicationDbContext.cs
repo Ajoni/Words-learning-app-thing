@@ -12,9 +12,9 @@ namespace Words_learning_app_thing.Data
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
 
-        public DbSet<Language> Jezyki { get; set; }
+        public DbSet<Jezyk> Jezyki { get; set; }
         public DbSet<ApplicationUser> Uzytkownicy { get; set; }
-        public DbSet<Word> Slowa { get; set; }
+        public DbSet<Slowo> Slowa { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

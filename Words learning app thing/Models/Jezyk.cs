@@ -5,11 +5,9 @@ using System.Web;
 
 namespace Words_learning_app_thing.Models
 {
-	public class LearnStrategy : ISessionStrategy
-	{
-		public bool CanGoToNext(Question current)
-		{
-
-		}
-	}
+    public class Jezyk
+    {
+        public int Id { get; set; }
+        public string Nazwa { get; set; }
+    }
 }

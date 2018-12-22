@@ -5,8 +5,11 @@ using System.Web;
 
 namespace Words_learning_app_thing.Models
 {
-	public class QuestionWithInput : Question
+	public class TestStrategy : IStrategiaSesji
 	{
-		public string Answer { get; set; }
+		public bool CzyMozeDoKolejnego(Pytanie current)
+		{
+			return true;
+		}
 	}
 }

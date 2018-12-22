@@ -5,11 +5,8 @@ using System.Web;
 
 namespace Words_learning_app_thing.Models
 {
-	public class TestStrategy : ISessionStrategy
+	public class PytanieZWyborem : Pytanie
 	{
-		public bool CanGoToNext(Question current)
-		{
-			return true;
-		}
-	}
+		public List<Slowo> BledneOdp { get; set; }        
+    }
 }

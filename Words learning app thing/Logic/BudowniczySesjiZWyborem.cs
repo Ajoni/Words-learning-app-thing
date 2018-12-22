@@ -6,24 +6,24 @@ using Words_learning_app_thing.Logic.Abstract;
 
 namespace Words_learning_app_thing.Logic
 {
-	public class SessionWithInputBuilder : SessionBuilder
+	public class BudowniczySesjiZWyborem : BudowniczySesji
 	{
-		public override void SetEasy()
+		public override void UstawLatwyZestaw()
 		{
 			throw new NotImplementedException();
 		}
 
-		public override void SetHard()
+		public override void UstawTrudnyZestaw()
 		{
 			throw new NotImplementedException();
 		}
 
-		public override void SetMedium()
+		public override void UstawSredniZestaw()
 		{
 			throw new NotImplementedException();
 		}
 
-		public override void SetVeryHard()
+		public override void UstawBardzoTrudnyZestaw()
 		{
 			throw new NotImplementedException();
 		}

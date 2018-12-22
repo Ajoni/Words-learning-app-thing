@@ -16,27 +16,27 @@ namespace Words_learning_app_thing.Data.Repositories
             this.context = context;
         }
 
-        public Language Get(int Id)
+        public Jezyk Get(int Id)
         {
             return context.Jezyki.Find(Id);
         }
 
-        public List<Language> GetAll()
+        public List<Jezyk> GetAll()
         {
             return context.Jezyki.ToList();
         }
 
-        public void Add(Language jezyk)
+        public void Add(Jezyk jezyk)
         {
             context.Jezyki.Add(jezyk);
         }
 
-        public void Update(Language jezyk)
+        public void Update(Jezyk jezyk)
         {
             context.Entry(jezyk).State = EntityState.Modified;
         }
         
-        public void Remove(Language jezyk)
+        public void Remove(Jezyk jezyk)
         {
             context.Jezyki.Remove(jezyk);
         }
