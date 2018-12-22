@@ -21,11 +21,6 @@ namespace Words_learning_app_thing.Data.Repositories
             return context.Uzytkownicy.Find(Id);
         }
 
-        public List<ApplicationUser> GetAll()
-        {
-            return context.Uzytkownicy.ToList();
-        }
-
         public void Add(ApplicationUser uzytkownik)
         {
             context.Uzytkownicy.Add(uzytkownik);
