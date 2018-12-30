@@ -9,9 +9,10 @@ namespace Words_learning_app_thing.ViewModels
 {
 	public class UserChoicesViewModel
 	{
-		TypSesji SessionType { get; set; }
-		Poziom Lvl { get; set; }
-		Jezyk KnownLanguage { get; set; }
-		Jezyk LearningLanguage { get; set; }
+		public TypSesji SessionType { get; set; }
+		public Poziom Lvl { get; set; }
+		public Jezyk ZnanyJezyk { get; set; }
+		public Jezyk UczonyJezyk { get; set; }
+		public RodzajInputu WybranyInput { get; set; }
 	}
 }

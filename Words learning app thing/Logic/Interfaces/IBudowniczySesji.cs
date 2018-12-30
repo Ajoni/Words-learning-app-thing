@@ -7,7 +7,7 @@ using Words_learning_app_thing.Models;
 
 namespace Words_learning_app_thing.Logic.Interfaces
 {
-	interface IBudowniczySesji
+	public interface IBudowniczySesji
 	{
         Sesja BudowanaSesja { get; }
         void Reset();

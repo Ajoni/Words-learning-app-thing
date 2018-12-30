@@ -198,6 +198,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Data\ApplicationDbContext.cs" />
+    <Compile Include="Data\IUOW.cs" />
     <Compile Include="Data\Repositories\JezykRepo.cs" />
     <Compile Include="Data\Repositories\SlowoRepo.cs" />
     <Compile Include="Data\Repositories\UserRepo.cs" />
@@ -209,9 +210,11 @@
     <Compile Include="Helpers\DIControllerFactory.cs" />
     <Compile Include="Helpers\IoC.cs" />
     <Compile Include="Logic\Abstract\BudowniczySesji.cs" />
+    <Compile Include="Logic\Director.cs" />
     <Compile Include="Logic\Interfaces\IBudowniczySesji.cs" />
     <Compile Include="Logic\BudowniczySesjiZInputem.cs" />
     <Compile Include="Logic\BudowniczySesjiZWyborem.cs" />
+    <Compile Include="Logic\Interfaces\IDirector.cs" />
     <Compile Include="Logic\Interfaces\ISessionIterator.cs" />
     <Compile Include="Models\Jezyk.cs" />
     <Compile Include="Logic\Nauka.cs" />

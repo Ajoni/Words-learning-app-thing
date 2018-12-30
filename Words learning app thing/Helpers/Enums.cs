@@ -15,4 +15,9 @@ namespace Words_learning_app_thing.Helpers
 		Trudny,
 		BardzoTrudny,
 	}
+	public enum RodzajInputu
+	{
+		TextInput = 0,
+		Select,
+	}
 }

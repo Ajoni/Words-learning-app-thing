@@ -9,8 +9,8 @@ namespace Words_learning_app_thing.Data
     // UOW as seen here: 
     // https://docs.microsoft.com/en-us/aspnet/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application#creating-the-student-repository-class
     //
-    public class UOW : IDisposable
-    {
+    public class UOW : IDisposable, IUOW
+	{
         private ApplicationDbContext _dbContext;
 
         private JezykRepo _jezykRepo;
