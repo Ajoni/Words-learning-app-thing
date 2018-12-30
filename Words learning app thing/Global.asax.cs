@@ -5,7 +5,10 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Words_learning_app_thing.Data;
 using Words_learning_app_thing.Helpers;
+using Words_learning_app_thing.Logic;
+using Words_learning_app_thing.Logic.Interfaces;
 
 namespace Words_learning_app_thing
 {
@@ -18,11 +21,8 @@ namespace Words_learning_app_thing
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 			var ioc = IoC.GetInstance();
-			//ioc.Register<Interface1, Enums>();
-			//ioc.Register<IControllerFactory, ControllerFactory>();
-			//ioc.Register<ITempDataProviderFactory, ITempDataProviderFactory>();
-			//ioc.Register<IControllerActivator, ControllerA>();
-			//DependencyResolver.SetResolver(ioc);
+			ioc.Register<IUOW, UOW>();
+			ioc.Register<IDirector, Director>();
 			ControllerBuilder.Current.SetControllerFactory(typeof(DIControllerFactory));
 		}
     }

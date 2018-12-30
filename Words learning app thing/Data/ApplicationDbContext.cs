@@ -13,7 +13,6 @@ namespace Words_learning_app_thing.Data
     {
 
         public DbSet<Jezyk> Jezyki { get; set; }
-        public DbSet<ApplicationUser> Uzytkownicy { get; set; }
         public DbSet<Slowo> Slowa { get; set; }
 
         public ApplicationDbContext()

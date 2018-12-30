@@ -18,12 +18,12 @@ namespace Words_learning_app_thing.Data.Repositories
         
         public ApplicationUser Get(string Id)
         {            
-            return context.Uzytkownicy.Find(Id);
+            return context.Users.Find(Id);
         }
 
         public void Add(ApplicationUser uzytkownik)
         {
-            context.Uzytkownicy.Add(uzytkownik);
+            context.Users.Add(uzytkownik);
         }
 
         public void Update(ApplicationUser uzytkownik)
@@ -33,7 +33,7 @@ namespace Words_learning_app_thing.Data.Repositories
 
         public void Remove(ApplicationUser uzytkownik)
         {
-            context.Uzytkownicy.Remove(uzytkownik);
+            context.Users.Remove(uzytkownik);
         }
 
         public void Save()
