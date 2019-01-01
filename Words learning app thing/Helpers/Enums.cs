@@ -20,4 +20,10 @@ namespace Words_learning_app_thing.Helpers
 		TextInput = 0,
 		Select,
 	}
+    // Gdy Tryb jest Automatyczny, poziom trudności sesji wybierany jest na podstawie postępów
+    public enum TrybWybieraniaSesji
+    {
+        Automatyczny = 0,
+        Manualny = 1
+    }
 }

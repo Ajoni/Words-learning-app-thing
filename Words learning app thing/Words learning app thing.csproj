@@ -224,6 +224,18 @@
     <Compile Include="Migrations\201812301258335_stuff.Designer.cs">
       <DependentUpon>201812301258335_stuff.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901011232219_added_progress.cs" />
+    <Compile Include="Migrations\201901011232219_added_progress.Designer.cs">
+      <DependentUpon>201901011232219_added_progress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901011240543_added_difficulty_choice_preference.cs" />
+    <Compile Include="Migrations\201901011240543_added_difficulty_choice_preference.Designer.cs">
+      <DependentUpon>201901011240543_added_difficulty_choice_preference.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901011312216_renamed_mode.cs" />
+    <Compile Include="Migrations\201901011312216_renamed_mode.Designer.cs">
+      <DependentUpon>201901011312216_renamed_mode.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Jezyk.cs" />
     <Compile Include="Logic\Nauka.cs" />
@@ -300,6 +312,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Manage\ChangeMode.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -323,6 +336,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812301258335_stuff.resx">
       <DependentUpon>201812301258335_stuff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901011232219_added_progress.resx">
+      <DependentUpon>201901011232219_added_progress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901011240543_added_difficulty_choice_preference.resx">
+      <DependentUpon>201901011240543_added_difficulty_choice_preference.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901011312216_renamed_mode.resx">
+      <DependentUpon>201901011312216_renamed_mode.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using Words_learning_app_thing.Helpers;
 
 namespace Words_learning_app_thing.Models
 {
@@ -12,6 +13,8 @@ namespace Words_learning_app_thing.Models
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
+        public int Progress { get; set; }
+        public TrybWybieraniaSesji Mode { get; set; }
     }
 
     public class ManageLoginsViewModel
@@ -82,5 +85,10 @@ namespace Words_learning_app_thing.Models
     {
         public string SelectedProvider { get; set; }
         public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
+    }
+
+    public class ChangeModeViewModel
+    {
+        public TrybWybieraniaSesji Mode { get; set; }
     }
 }

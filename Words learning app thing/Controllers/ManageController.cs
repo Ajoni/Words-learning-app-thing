@@ -64,13 +64,16 @@ namespace Words_learning_app_thing.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
+            var user = UserManager.FindById(userId);
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                Progress = user.Progress,
+                Mode = user.PrefferedMode
             };
             return View(model);
         }
@@ -333,7 +336,31 @@ namespace Words_learning_app_thing.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        //
+        // GET: /Manage/ChangeMode
+        public ActionResult ChangeMode()
+        {
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            var model = new ChangeModeViewModel
+            {
+                Mode = user.PrefferedMode
+            };
+            return View(model);
+        }
+
+        //
+        // POST: /Manage/ChangeMode
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangeMode(ChangeModeViewModel model)
+        {
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            user.PrefferedMode = model.Mode;
+            UserManager.Update(user);
+            return RedirectToAction("Index", new { Message = ManageMessageId.ChangeModeSuccess });
+        }
+
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -381,6 +408,7 @@ namespace Words_learning_app_thing.Controllers
             SetPasswordSuccess,
             RemoveLoginSuccess,
             RemovePhoneSuccess,
+            ChangeModeSuccess,
             Error
         }
 

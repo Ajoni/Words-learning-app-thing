@@ -1,0 +1,35 @@
+﻿@model Words_learning_app_thing.Models.ChangeModeViewModel
+@using Words_learning_app_thing.Helpers;
+
+@{
+    ViewBag.Title = "Change mode";
+}
+
+<div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    @using (Html.BeginForm("ChangeMode", "Manage", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>ChangeModeViewModel</h4>
+            <hr />            
+            <div class="form-group">
+                @Html.LabelFor(m => m.Mode)
+                @Html.EnumDropDownListFor(model => model.Mode)
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</div>
