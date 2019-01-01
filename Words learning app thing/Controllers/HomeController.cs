@@ -34,22 +34,7 @@ namespace Words_learning_app_thing.Controllers
 		[HttpPost]
 		public ActionResult Index(UserChoicesViewModel viewModel)
 		{
-			IBudowniczySesji budowniczySesji;
-			switch (viewModel.WybranyInput)
-			{
-				case RodzajInputu.Select:
-					budowniczySesji = new BudowniczySesjiZWyborem();
-					break;
-				case RodzajInputu.TextInput:
-					budowniczySesji = new BudowniczySesjiZWyborem();
-					break;
-				default:
-					throw new ArgumentException($"Brak ustalonego budowniczego dla {viewModel.WybranyInput}");
-			}
-			_director.Akceptuj(budowniczySesji);
-			_director.Stworz(viewModel);
-			Sesja sesja = budowniczySesji.BudowanaSesja;
-			sesja.Uzytkownik = _uow.UserRepo.Get(User.Identity.GetUserId());
+			
 			return RedirectToAction("Test");
 		}
 	}

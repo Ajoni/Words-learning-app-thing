@@ -20,7 +20,7 @@ namespace Words_learning_app_thing.Models
 		public ApplicationUser Uzytkownik { get; set; }
         public List<Pytanie> Pytania { get; set; }
 
-		public ISessionIterator GetEnumerator()
+		public ISessionIterator GetIterator()
 		{
 			return new SessionIterator(this);
 		}
