@@ -195,6 +195,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SessionController.cs" />
@@ -249,6 +250,7 @@
     <Compile Include="Logic\Test.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="ViewModels\CreateSlowoViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -322,6 +324,16 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Manage\ChangeMode.cshtml" />
     <Content Include="Views\Session\Index.cshtml" />
+    <Content Include="Views\Session\Solve.cshtml" />
+    <Content Include="Views\Session\PartialPytanieZInputem.cshtml" />
+    <Content Include="Views\Session\PartialPytanieZWyborem.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Words.cshtml" />
+    <Content Include="Views\Admin\Languages.cshtml" />
+    <Content Include="Views\Admin\EditWord.cshtml" />
+    <Content Include="Views\Admin\DetailsWord.cshtml" />
+    <Content Include="Views\Admin\DeleteWord.cshtml" />
+    <Content Include="Views\Admin\CreateWord.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

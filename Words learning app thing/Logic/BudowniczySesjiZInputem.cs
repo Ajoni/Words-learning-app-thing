@@ -13,15 +13,15 @@ namespace Words_learning_app_thing.Logic
 			throw new NotImplementedException();
 		}
 
-		public override void UstawTrudnyZestaw()
-		{
-			throw new NotImplementedException();
-		}
+        public override void UstawSredniZestaw()
+        {
+            throw new NotImplementedException();
+        }
 
-		public override void UstawSredniZestaw()
+        public override void UstawTrudnyZestaw()
 		{
 			throw new NotImplementedException();
-		}
+		}		
 
 		public override void UstawBardzoTrudnyZestaw()
 		{

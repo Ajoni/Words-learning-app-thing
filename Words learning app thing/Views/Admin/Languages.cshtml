@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Words_learning_app_thing.Models.Jezyk>
+
+@{
+    ViewBag.Title = "Languages";
+}
+
+<h2>Languages</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateLanguage")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nazwa)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nazwa)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditLanguage", new { id=item.Id }) |
+            @Html.ActionLink("Details", "DetailsLanguage", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "DeleteLanguage", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

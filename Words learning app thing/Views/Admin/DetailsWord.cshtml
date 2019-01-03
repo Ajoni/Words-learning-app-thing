@@ -1,0 +1,26 @@
+﻿@model Words_learning_app_thing.Models.Slowo
+
+@{
+    ViewBag.Title = "DetailsWord";
+}
+
+<h2>DetailsWord</h2>
+
+<div>
+    <h4>Slowo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Zawartosc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Zawartosc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

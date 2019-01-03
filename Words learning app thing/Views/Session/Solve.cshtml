@@ -1,0 +1,20 @@
+﻿@model Words_learning_app_thing.ViewModels.PytanieViewModel
+
+@{
+    ViewBag.Title = "Solve";
+}
+
+<h2>Solve</h2>
+
+@if (Model.pytanieZInputemViewModel != null)
+{
+    @Html.Partial("PartialPytanieZInputem", Model.pytanieZInputemViewModel);
+}
+else if (Model.pytanieZWyboremViewModel != null)
+{
+    @Html.Partial("PartialPytanieZWyborem", Model.pytanieZWyboremViewModel);
+}
+else
+{
+    <p>Nie ma modelu pytania</p>
+}
