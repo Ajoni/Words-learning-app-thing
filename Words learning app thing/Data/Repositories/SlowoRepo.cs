@@ -16,9 +16,14 @@ namespace Words_learning_app_thing.Data.Repositories
             this.context = context;
         }
 
+        // Eagerly loading multiple levels here
         public Slowo Get(int Id)
         {
-            return context.Slowa.Find(Id);
+            return context.Slowa
+                .Include(s => s.Jezyk)
+                .Include(s => s.Tlumaczenia.Select(t => t.Jezyk))
+                .Where(s => s.Id == Id)
+                .FirstOrDefault();
         }
 
         public List<Slowo> GetAll()
@@ -28,7 +33,7 @@ namespace Words_learning_app_thing.Data.Repositories
 
         public List<Slowo> GetAll(Jezyk jezyk)
         {
-            return (List<Slowo>)context.Slowa.Include(s => s.Jezyk).ToList().Where(w => w.Jezyk == jezyk);
+            return (List<Slowo>)context.Slowa.Include(s => s.Jezyk).Where(w => w.Jezyk == jezyk).ToList();
         }
 
         public List<Slowo> GetTlumaczenia(Slowo slowo, Jezyk jezyk)
@@ -48,6 +53,16 @@ namespace Words_learning_app_thing.Data.Repositories
 
         public void Remove(Slowo slowo)
         {
+            // Usunąć to słowo z tłumaczeń
+            foreach(var s in slowo.Tlumaczenia)
+            {
+                Slowo tlumaczenie = Get(s.Id);
+                tlumaczenie.Tlumaczenia.Remove(slowo);
+            }
+            // Usunąć tłumaczenia tego słowa
+            slowo.Tlumaczenia.Clear();
+            
+            // Usunięcie samego słowa
             context.Slowa.Remove(slowo);
         }
 

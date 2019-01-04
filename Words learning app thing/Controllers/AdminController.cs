@@ -75,6 +75,50 @@ namespace Words_learning_app_thing.Controllers
             return View(UOW.SlowoRepo.Get(id));
         }
 
+        [HttpPost]
+        public ActionResult DeleteWord(Slowo slowo)
+        {
+            Slowo toRemove = UOW.SlowoRepo.Get(slowo.Id);
+            UOW.SlowoRepo.Remove(toRemove);
+            UOW.SlowoRepo.Save();
+            return RedirectToAction("Words");
+        }
+
+        // GET:Admin/WordAddTranslation/{id}
+        public ActionResult WordAddTranslation(int id)
+        {
+            Slowo slowo = UOW.SlowoRepo.Get(id);
+
+            // Get all possible words
+            var model = new WordAddTranslationViewModel()
+            {
+                slowo = slowo,
+                PossibleWords = UOW.SlowoRepo.GetAll()
+                        .Select(x =>
+                                new SelectListItem
+                                {
+                                    Value = x.Id.ToString(),
+                                    Text = x.Zawartosc
+                                }),
+                thisWordId = slowo.Id
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult WordAddTranslation(WordAddTranslationViewModel model)
+        {
+            Slowo slowo = UOW.SlowoRepo.Get(model.thisWordId);
+            Slowo tlumaczenie = UOW.SlowoRepo.Get(model.translationId);
+
+            slowo.Tlumaczenia.Add(tlumaczenie);
+            tlumaczenie.Tlumaczenia.Add(slowo);
+            UOW.SlowoRepo.Save();
+
+            return RedirectToAction("EditWord", new { Id = model.thisWordId });
+        }
+
         // Lists all available Languages
         // GET: Admin/Languages 
         public ActionResult Languages()

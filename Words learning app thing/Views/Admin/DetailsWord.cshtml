@@ -19,8 +19,35 @@
         </dd>
 
     </dl>
+    <h3>@Html.DisplayNameFor(model => model.Tlumaczenia)</h3>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Words")
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Zawartosc)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Jezyk)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var slowo in Model.Tlumaczenia)
+            {
+                <tr>
+                    <td>
+                        @slowo.Zawartosc
+                    </td>
+                    <td>
+                        @slowo.Jezyk.Nazwa
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

@@ -1,0 +1,42 @@
+﻿@model Words_learning_app_thing.ViewModels.WordAddTranslationViewModel
+
+@{
+    ViewBag.Title = "WordAddTranslation";
+}
+
+<h2>WordAddTranslation</h2>
+
+@using (Html.BeginForm())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.slowo.Zawartosc)
+                </th>
+                <th>
+                    Tłumaczenie
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.slowo.Zawartosc)
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.translationId, Model.PossibleWords)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+
+    @Html.HiddenFor(model => model.thisWordId)
+}
+
