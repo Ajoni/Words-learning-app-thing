@@ -238,6 +238,10 @@
     <Compile Include="Migrations\201901011312216_renamed_mode.Designer.cs">
       <DependentUpon>201901011312216_renamed_mode.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901040942332_fixed_slowo_tlumaczenie.cs" />
+    <Compile Include="Migrations\201901040942332_fixed_slowo_tlumaczenie.Designer.cs">
+      <DependentUpon>201901040942332_fixed_slowo_tlumaczenie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Jezyk.cs" />
     <Compile Include="Logic\Nauka.cs" />
@@ -364,6 +368,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901011312216_renamed_mode.resx">
       <DependentUpon>201901011312216_renamed_mode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901040942332_fixed_slowo_tlumaczenie.resx">
+      <DependentUpon>201901040942332_fixed_slowo_tlumaczenie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

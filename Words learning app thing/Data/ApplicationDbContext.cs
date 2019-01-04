@@ -24,5 +24,20 @@ namespace Words_learning_app_thing.Data
         {
             return new ApplicationDbContext();
         }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Slowo>()
+                        .HasMany<Slowo>(s => s.Tlumaczenia)
+                        .WithMany()
+                        .Map(cs =>
+                        {
+                            cs.MapLeftKey("SlowoId");
+                            cs.MapRightKey("TlumaczenieId");
+                            cs.ToTable("SlowoTlumaczenie");
+                        });
+
+        }
     }
 }
