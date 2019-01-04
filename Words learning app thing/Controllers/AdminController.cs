@@ -63,6 +63,16 @@ namespace Words_learning_app_thing.Controllers
             return View(UOW.SlowoRepo.Get(id));
         }
 
+        // POST:Admin/EditWord/{id}
+        [HttpPost]
+        public ActionResult EditWord(Slowo model)
+        {
+            Slowo slowo = UOW.SlowoRepo.Get(model.Id);
+            slowo.Zawartosc = model.Zawartosc;
+            UOW.JezykRepo.Save();
+            return RedirectToAction("Words");
+        }
+
         // GET:Admin/DetailsWord/{id}
         public ActionResult DetailsWord(int id)
         {
@@ -136,6 +146,64 @@ namespace Words_learning_app_thing.Controllers
         public ActionResult Languages()
         {
             return View(UOW.JezykRepo.GetAll());
+        }
+
+        // GET:Admin/CreateLanguage
+        public ActionResult CreateLanguage()
+        {
+            return View();
+        }
+
+        // POST:Admin/CreateLanguage
+        [HttpPost]
+        public ActionResult CreateLanguage(Jezyk model)
+        {
+            UOW.JezykRepo.Add(model);
+            UOW.JezykRepo.Save();
+            return RedirectToAction("Languages");
+        }
+
+        // GET:Admin/EditLanguage/{id}
+        public ActionResult EditLanguage(int id)
+        {
+            return View(UOW.JezykRepo.Get(id));
+        }
+
+        // POST:Admin/EditLanguage/{id}
+        [HttpPost]
+        public ActionResult EditLanguage(Jezyk model)
+        {
+            Jezyk jezyk = UOW.JezykRepo.Get(model.Id);
+            jezyk.Nazwa = model.Nazwa;
+            UOW.JezykRepo.Save();
+            return RedirectToAction("Languages");
+        }
+
+        // GET:Admin/DetailsLanguage/{id}
+        public ActionResult DetailsLanguage(int id)
+        {
+            return View(UOW.JezykRepo.Get(id));
+        }
+
+        // GET:Admin/DeleteLanguage/{id}
+        public ActionResult DeleteLanguage(int id)
+        {
+            return View(UOW.JezykRepo.Get(id));
+        }
+
+        // POST:Admin/DeleteLanguage/{id}
+        [HttpPost]
+        public ActionResult DeleteLanguage(Jezyk jezyk)
+        {
+            Jezyk toRemove = UOW.JezykRepo.Get(jezyk.Id);
+                List<Slowo> SlowaToRemove = UOW.SlowoRepo.GetAll(toRemove);
+                foreach(var slowo in SlowaToRemove)
+                {
+                    UOW.SlowoRepo.Remove(slowo);
+                }
+            UOW.JezykRepo.Remove(toRemove);
+            UOW.SlowoRepo.Save();
+            return RedirectToAction("Languages");
         }
 
         private IEnumerable<SelectListItem> GetJezyki()

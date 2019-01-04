@@ -33,7 +33,7 @@ namespace Words_learning_app_thing.Data.Repositories
 
         public List<Slowo> GetAll(Jezyk jezyk)
         {
-            return (List<Slowo>)context.Slowa.Include(s => s.Jezyk).Where(w => w.Jezyk == jezyk).ToList();
+            return (List<Slowo>)context.Slowa.Include(s => s.Jezyk).Include(s => s.Tlumaczenia).Where(w => w.Jezyk.Id == jezyk.Id).ToList();
         }
 
         public List<Slowo> GetTlumaczenia(Slowo slowo, Jezyk jezyk)

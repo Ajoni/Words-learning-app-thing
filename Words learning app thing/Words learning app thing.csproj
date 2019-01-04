@@ -344,6 +344,10 @@
     <Content Include="Views\Admin\DeleteWord.cshtml" />
     <Content Include="Views\Admin\CreateWord.cshtml" />
     <Content Include="Views\Admin\WordAddTranslation.cshtml" />
+    <Content Include="Views\Admin\CreateLanguage.cshtml" />
+    <Content Include="Views\Admin\EditLanguage.cshtml" />
+    <Content Include="Views\Admin\DetailsLanguage.cshtml" />
+    <Content Include="Views\Admin\DeleteLanguage.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
