@@ -119,6 +119,18 @@ namespace Words_learning_app_thing.Controllers
             return RedirectToAction("EditWord", new { Id = model.thisWordId });
         }
 
+        public ActionResult RemoveWordTranslation(int wordId, int translationId)
+        {
+            Slowo slowo = UOW.SlowoRepo.Get(wordId);
+            Slowo tlumaczenie = UOW.SlowoRepo.Get(translationId);
+
+            slowo.Tlumaczenia.Remove(tlumaczenie);
+            tlumaczenie.Tlumaczenia.Remove(slowo);
+
+            UOW.SlowoRepo.Save();
+            return RedirectToAction("EditWord", new { Id = wordId });
+        }
+
         // Lists all available Languages
         // GET: Admin/Languages 
         public ActionResult Languages()
