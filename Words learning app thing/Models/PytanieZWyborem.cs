@@ -10,6 +10,13 @@ namespace Words_learning_app_thing.Models
 	{
 		public List<Slowo> BledneOdp { get; set; }
 
+        public PytanieZWyborem(Slowo s, Jezyk jezyk, List<Slowo> bledne)
+        {
+            this.DoPrzetlumaczenia = s;
+            this.JezykUczony = jezyk;
+            this.BledneOdp = bledne;
+        }
+
         public new PytanieViewModel getViewModel()
         {
             PytanieViewModel model = base.getViewModel();

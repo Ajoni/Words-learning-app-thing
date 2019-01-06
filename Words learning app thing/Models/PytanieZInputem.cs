@@ -8,6 +8,12 @@ namespace Words_learning_app_thing.Models
 {
     public class PytanieZInputem : Pytanie
     {
+        public PytanieZInputem(Slowo s, Jezyk jezyk)
+        {
+            this.DoPrzetlumaczenia = s;
+            this.JezykUczony = jezyk;
+        }
+
         public new PytanieViewModel getViewModel()
         {
             PytanieViewModel model = base.getViewModel();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Words_learning_app_thing.Data.Repositories;
 using Words_learning_app_thing.Logic.Interfaces;
 using Words_learning_app_thing.Models;
 
@@ -10,8 +11,9 @@ namespace Words_learning_app_thing.Logic.Abstract
 	public abstract class BudowniczySesji : IBudowniczySesji
 	{
 		public Sesja BudowanaSesja { get; private set; } = new Sesja();
+        protected SlowoRepo _slowoRepo { get; set; }
 
-		public void Reset()
+        public void Reset()
 		{
 			BudowanaSesja = new Sesja();
 		}		

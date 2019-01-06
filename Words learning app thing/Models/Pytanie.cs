@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using Words_learning_app_thing.ViewModels;
 
 namespace Words_learning_app_thing.Models
@@ -10,10 +8,14 @@ namespace Words_learning_app_thing.Models
     {
         public int Id { get; set; }
         public Slowo DoPrzetlumaczenia { get; set; }
+        public Jezyk JezykUczony { get; set; }
         public string OdpowiedzUzytkownika { get; set; }
 		public bool CzyOdpowiedzianoPoprawnie()
         {
-            return OdpowiedzUzytkownika.Equals(DoPrzetlumaczenia.Zawartosc, StringComparison.InvariantCultureIgnoreCase);
+            return OdpowiedzUzytkownika.Equals(DoPrzetlumaczenia
+                .Tlumaczenia
+                .Where(tl => tl.Jezyk==JezykUczony)
+                .SingleOrDefault().Zawartosc, StringComparison.InvariantCultureIgnoreCase);
         }
 
         public PytanieViewModel getViewModel()

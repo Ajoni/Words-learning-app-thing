@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Words_learning_app_thing.Logic.Abstract;
+using Words_learning_app_thing.Models;
 
 namespace Words_learning_app_thing.Logic
 {
@@ -10,22 +11,31 @@ namespace Words_learning_app_thing.Logic
 	{
 		public override void UstawLatwyZestaw()
 		{
-			throw new NotImplementedException();
-		}
+            this.BudowanaSesja.Pytania = getPytania(5, 1, this.BudowanaSesja.UczonyJezyk);
+        }
 
         public override void UstawSredniZestaw()
         {
-            throw new NotImplementedException();
+            this.BudowanaSesja.Pytania = getPytania(5, 2, this.BudowanaSesja.UczonyJezyk);
         }
 
         public override void UstawTrudnyZestaw()
 		{
-			throw new NotImplementedException();
-		}		
+            this.BudowanaSesja.Pytania = getPytania(5, 3, this.BudowanaSesja.UczonyJezyk);
+        }		
 
 		public override void UstawBardzoTrudnyZestaw()
 		{
-			throw new NotImplementedException();
-		}
-	}
+            this.BudowanaSesja.Pytania = getPytania(5, 4, this.BudowanaSesja.UczonyJezyk);
+        }
+
+        private List<Pytanie> getPytania(int toTake, int wrongToTake, Jezyk jezykUczony)
+        {
+            var slowa = _slowoRepo.GetShuffled(0, toTake, jezykUczony);
+            return slowa
+                .Select(s => (Pytanie)
+                new PytanieZWyborem(s, jezykUczony, _slowoRepo.GetWrong(s.Id, wrongToTake, jezykUczony)))
+                .ToList();
+        }
+    }
 }

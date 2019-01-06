@@ -51,6 +51,29 @@ namespace Words_learning_app_thing.Data.Repositories
             context.Entry(slowo).State = EntityState.Modified;
         }
 
+        public List<Slowo> GetShuffled(int minLength, int toTake, Jezyk jezyk)
+        {
+            var r = new Random();
+            return context.Slowa
+                .Where(s => s.Zawartosc.Length >= minLength)
+                .Where(s => s.Tlumaczenia.Any(tl => tl.Jezyk == jezyk))
+                .Include(s => s.Tlumaczenia)
+                .OrderBy(x => r.Next())
+                .Take(toTake)
+                .ToList();
+        }
+
+        public List<Slowo> GetWrong(int excludedId, int toTake, Jezyk jezyk)
+        {
+            var r = new Random();
+            return context.Slowa
+                .Where(s => s.Id != excludedId)
+                .Where(s => s.Jezyk == jezyk)
+                .OrderBy(x => r.Next())
+                .Take(toTake)
+                .ToList();
+        }
+
         public void Remove(Slowo slowo)
         {
             // Usunąć to słowo z tłumaczeń
