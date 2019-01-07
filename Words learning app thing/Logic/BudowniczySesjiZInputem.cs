@@ -10,7 +10,7 @@ namespace Words_learning_app_thing.Logic
 	{
         public BudowniczySesjiZInputem(SlowoRepo slowoRepo)
         {
-            slowoRepo = _slowoRepo;
+            _slowoRepo = slowoRepo;
         }
 
 		public override void UstawLatwyZestaw()

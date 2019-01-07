@@ -13,9 +13,14 @@ namespace Words_learning_app_thing.ViewModels
 		public TypSesji SessionType { get; set; }
 		public Poziom Lvl { get; set; }
         public bool CanEditLevel { get; set; } = true;
+
 		public Jezyk ZnanyJezyk { get; set; }
+        public int ZnanyJezykId { get; set; }
+
 		public Jezyk UczonyJezyk { get; set; }
-		public RodzajInputu WybranyInput { get; set; }
+        public int UczonyJezykId { get; set; }
+
+        public RodzajInputu WybranyInput { get; set; }
         public IEnumerable<SelectListItem> Jezyki { get; set; }
 
         public void SetLevel(int progress)

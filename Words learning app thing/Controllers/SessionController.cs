@@ -72,27 +72,35 @@ namespace Words_learning_app_thing.Controllers
         [HttpPost]
         public ActionResult Index(UserChoicesViewModel model)
         {
-            IBudowniczySesji budowniczySesji;
-            switch (model.WybranyInput)
+            if (ModelState.IsValid)
             {
-                case RodzajInputu.Select:
-                    budowniczySesji = new BudowniczySesjiZWyborem();
-                    break;
-                case RodzajInputu.TextInput:
-                    budowniczySesji = new BudowniczySesjiZInputem();
-                    break;
-                default:
-                    throw new ArgumentException($"Brak ustalonego budowniczego dla {model.WybranyInput}");
-            }
-            budowniczySesji.Reset();
-            _director.Akceptuj(budowniczySesji);
-            _director.Stworz(model);
-            Sesja sesja = budowniczySesji.BudowanaSesja;
-            sesja.Uzytkownik = _uow.UserRepo.Get(User.Identity.GetUserId());
+                model.UczonyJezyk = _uow.JezykRepo.Get(model.UczonyJezykId);
+                model.ZnanyJezyk = _uow.JezykRepo.Get(model.ZnanyJezykId);
 
-            Session[sessionKey] = sesja;
-            Session[iteratorKey] = sesja.GetIterator();
-            return View();
+                IBudowniczySesji budowniczySesji;
+                switch (model.WybranyInput)
+                {
+                    case RodzajInputu.Select:
+                        budowniczySesji = new BudowniczySesjiZWyborem(_uow.SlowoRepo);
+                        break;
+                    case RodzajInputu.TextInput:
+                        budowniczySesji = new BudowniczySesjiZInputem(_uow.SlowoRepo);
+                        break;
+                    default:
+                        throw new ArgumentException($"Brak ustalonego budowniczego dla {model.WybranyInput}");
+                }
+                budowniczySesji.Reset();
+                _director.Akceptuj(budowniczySesji);
+                _director.Stworz(model);
+                Sesja sesja = budowniczySesji.BudowanaSesja;
+                sesja.Uzytkownik = _uow.UserRepo.Get(User.Identity.GetUserId());
+
+                Session[sessionKey] = sesja;
+                Session[iteratorKey] = sesja.GetIterator();
+
+                return RedirectToAction("Solve");
+            }
+            return View(model);
         }
 
         // Displays the question currently pointed to by the iterator
@@ -105,10 +113,23 @@ namespace Words_learning_app_thing.Controllers
             return View(model);
         }
 
-        // GET: Session/Next
-        public ActionResult Next()
+        // This results in saving the answer
+        [HttpPost]        
+        public ActionResult Solve(string OdpowiedzUzytkownika)
         {
             ISessionIterator iterator = (ISessionIterator)Session[iteratorKey];
+            Pytanie pytanie = iterator.GetCurrent();
+            pytanie.OdpowiedzUzytkownika = OdpowiedzUzytkownika;
+            return View(pytanie.getViewModel());
+        }
+
+        // POST: Session/Next
+        [HttpPost]
+        public ActionResult Next(string OdpowiedzUzytkownika)
+        {
+            ISessionIterator iterator = (ISessionIterator)Session[iteratorKey];
+            Pytanie pytanie = iterator.GetCurrent();
+            pytanie.OdpowiedzUzytkownika = OdpowiedzUzytkownika;
             if (iterator.HasNext())
             {
                 iterator.Next();
@@ -116,15 +137,25 @@ namespace Words_learning_app_thing.Controllers
             return RedirectToAction("Solve");
         }
 
-        // GET: Session/Previous
-        public ActionResult Previous()
+        // POST: Session/Previous
+        [HttpPost]
+        public ActionResult Previous(string OdpowiedzUzytkownika)
         {
             ISessionIterator iterator = (ISessionIterator)Session[iteratorKey];
+            Pytanie pytanie = iterator.GetCurrent();
+            pytanie.OdpowiedzUzytkownika = OdpowiedzUzytkownika;
             if (iterator.HasPrev())
             {
                 iterator.Prev();
             }
             return RedirectToAction("Solve");
+        }
+
+        public ActionResult Cancel()
+        {
+            Session[iteratorKey] = null;
+            Session[sessionKey] = null;
+            return RedirectToAction("Index");
         }
 
         // GET: Session/Finish

@@ -21,7 +21,20 @@ namespace Words_learning_app_thing.Logic
 
 		public void Stworz(UserChoicesViewModel userChoices)
 		{
-			switch (userChoices.Lvl)
+            budowniczySesji.UstawJezykUczony(userChoices.UczonyJezyk);
+            budowniczySesji.UstawJezykZnany(userChoices.ZnanyJezyk);
+            switch (userChoices.SessionType)
+            {
+                case TypSesji.Nauka:
+                    budowniczySesji.UstawStrategieNauka();
+                    break;
+                case TypSesji.Test:
+                    budowniczySesji.UstawStrategieTest();
+                    break;
+                default:
+                    throw new ArgumentException($"Nieznany rodzaj sesji {userChoices.SessionType}");
+            }
+            switch (userChoices.Lvl)
 			{
 				case Poziom.Latwy:
 					budowniczySesji.UstawLatwyZestaw();
@@ -38,19 +51,6 @@ namespace Words_learning_app_thing.Logic
 				default:
 					throw new ArgumentException($"Brak ustalonego zachowania dla poziomu {userChoices.Lvl}");
 			}
-			switch (userChoices.SessionType)
-			{
-				case TypSesji.Nauka:
-					budowniczySesji.UstawStrategieNauka();
-					break;
-				case TypSesji.Test:
-					budowniczySesji.UstawStrategieTest();
-					break;
-				default:
-					throw new ArgumentException($"Nieznany rodzaj sesji {userChoices.SessionType}");
-			}
-			budowniczySesji.UstawJezykUczony(userChoices.UczonyJezyk);
-			budowniczySesji.UstawJezykZnany(userChoices.ZnanyJezyk);
 		}
 	}
 }	

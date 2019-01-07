@@ -34,6 +34,7 @@ namespace Words_learning_app_thing.Models
 			public SessionIterator(Sesja sesja)
 			{
 				_sesja = sesja;
+                _strategia = _sesja.Strategia;
 			}
 			public void First()
 			{
@@ -47,7 +48,7 @@ namespace Words_learning_app_thing.Models
 
 			public bool HasNext()
 			{
-				return _index < _sesja.Pytania.Count;
+				return _index < _sesja.Pytania.Count - 1;
 			}
 
 			public bool HasPrev()
@@ -59,13 +60,11 @@ namespace Words_learning_app_thing.Models
 			{
 				if (_strategia.CzyMozeDoKolejnego(_sesja.Pytania[_index]))
 					_index++;
-				throw new NotImplementedException();
 			}
 
 			public void Prev()
 			{
 				_index--;
-				throw new NotImplementedException();
 			}
 		}
 	}

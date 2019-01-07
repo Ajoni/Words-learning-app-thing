@@ -53,23 +53,21 @@ namespace Words_learning_app_thing.Data.Repositories
 
         public List<Slowo> GetShuffled(int minLength, int toTake, Jezyk jezyk)
         {
-            var r = new Random();
             return context.Slowa
                 .Where(s => s.Zawartosc.Length >= minLength)
-                .Where(s => s.Tlumaczenia.Any(tl => tl.Jezyk == jezyk))
+                .Where(s => s.Tlumaczenia.Any(tl => tl.Jezyk.Id == jezyk.Id))
                 .Include(s => s.Tlumaczenia)
-                .OrderBy(x => r.Next())
+                .OrderBy(s => Guid.NewGuid())
                 .Take(toTake)
                 .ToList();
         }
 
         public List<Slowo> GetWrong(int excludedId, int toTake, Jezyk jezyk)
         {
-            var r = new Random();
             return context.Slowa
                 .Where(s => s.Id != excludedId)
-                .Where(s => s.Jezyk == jezyk)
-                .OrderBy(x => r.Next())
+                .Where(s => s.Jezyk.Id == jezyk.Id)
+                .OrderBy(s => Guid.NewGuid())
                 .Take(toTake)
                 .ToList();
         }

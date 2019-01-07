@@ -54,16 +54,16 @@
     <div class="form-group">
         @Html.LabelFor(model => model.ZnanyJezyk, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownListFor(model => model.ZnanyJezyk, Model.Jezyki)
-            @Html.ValidationMessageFor(model => model.ZnanyJezyk, "", new { @class = "text-danger" })
+            @Html.DropDownListFor(model => model.ZnanyJezykId, Model.Jezyki)
+            @Html.ValidationMessageFor(model => model.ZnanyJezykId, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.UczonyJezyk, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownListFor(model => model.UczonyJezyk, Model.Jezyki)
-            @Html.ValidationMessageFor(model => model.UczonyJezyk, "", new { @class = "text-danger" })
+            @Html.DropDownListFor(model => model.UczonyJezykId, Model.Jezyki)
+            @Html.ValidationMessageFor(model => model.UczonyJezykId, "", new { @class = "text-danger" })
         </div>
     </div>
 

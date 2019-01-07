@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Words_learning_app_thing.Data.Repositories;
 using Words_learning_app_thing.Logic.Abstract;
 using Words_learning_app_thing.Models;
 
@@ -9,7 +10,12 @@ namespace Words_learning_app_thing.Logic
 {
 	public class BudowniczySesjiZWyborem : BudowniczySesji
 	{
-		public override void UstawLatwyZestaw()
+        public BudowniczySesjiZWyborem(SlowoRepo slowoRepo)
+        {
+            _slowoRepo = slowoRepo;
+        }
+
+        public override void UstawLatwyZestaw()
 		{
             this.BudowanaSesja.Pytania = getPytania(5, 1, this.BudowanaSesja.UczonyJezyk);
         }

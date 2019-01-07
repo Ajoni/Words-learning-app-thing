@@ -14,10 +14,15 @@ namespace Words_learning_app_thing.Models
             this.JezykUczony = jezyk;
         }
 
-        public new PytanieViewModel getViewModel()
+        public override PytanieViewModel getViewModel()
         {
             PytanieViewModel model = base.getViewModel();
-            model.pytanieZInputemViewModel = new PytanieZInputemViewModel();
+            model.pytanieZInputemViewModel = new PytanieZInputemViewModel()
+            {
+                SlowoDoPrzetlumaczenia = DoPrzetlumaczenia.Zawartosc,
+                OdpowiedzUzytkownika = OdpowiedzUzytkownika,
+                JezykUczony = JezykUczony
+            };
             return model;
         }
     }
