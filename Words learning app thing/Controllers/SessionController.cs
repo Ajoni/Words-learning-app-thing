@@ -51,6 +51,12 @@ namespace Words_learning_app_thing.Controllers
                 return RedirectToAction("Solve");
             }
             // Otherwise, offer a choice to create one
+            UserChoicesViewModel model = GetSessionViewModel();
+            return View(model);
+        }
+
+        private UserChoicesViewModel GetSessionViewModel()
+        {
             var user = UserManager.FindById(User.Identity.GetUserId());
             var model = new UserChoicesViewModel()
             {
@@ -65,13 +71,24 @@ namespace Words_learning_app_thing.Controllers
             {
                 model.CanEditLevel = true;
             }
-            return View(model);
+
+            return model;
         }
 
         // POST: Session
         [HttpPost]
         public ActionResult Index(UserChoicesViewModel model)
         {
+            if (model.UczonyJezykId == model.ZnanyJezykId)
+            {
+                var newModel = GetSessionViewModel();
+                newModel.ZnanyJezykId = model.ZnanyJezykId;
+                newModel.UczonyJezykId = model.UczonyJezykId;
+
+                ModelState.AddModelError("JezykUczony", "Język który znasz i którego się uczysz muszą być różne");
+                return View(newModel);
+            }
+
             if (ModelState.IsValid)
             {
                 model.UczonyJezyk = _uow.JezykRepo.Get(model.UczonyJezykId);
