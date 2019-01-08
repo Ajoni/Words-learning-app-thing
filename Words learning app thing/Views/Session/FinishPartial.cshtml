@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Words_learning_app_thing.Models.Pytanie>
+
+<table class="table">
+    <tr>
+        <th>
+            Słowo do przetłumaczenia
+        </th>
+        <th>
+            Na język
+        </th>
+        <th>
+            Twoja odpowiedź
+        </th>
+        <th>
+            Poprawne odpowiedzi
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoPrzetlumaczenia.Zawartosc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JezykUczony.Nazwa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OdpowiedzUzytkownika)
+            </td>
+            <td>
+                @{ string odpowiedzi = "";}
+                @foreach(var tlumaczenie in item.DoPrzetlumaczenia.Tlumaczenia)
+                {
+                    odpowiedzi += tlumaczenie.Zawartosc + ", ";
+                }
+                @odpowiedzi
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -10,17 +11,23 @@ namespace Words_learning_app_thing.Helpers
 		Test = 1
 	}
 	public enum Poziom {
-		Latwy = 0,
-		Sredni,
-		Trudny,
-		BardzoTrudny,
+        [Display(Name = "Łatwy")]
+        Latwy = 0,
+        [Display(Name = "Średni")]
+        Sredni,
+        [Display(Name = "Trudny")]
+        Trudny,
+        [Display(Name = "Bardzo Trudny")]
+        BardzoTrudny,
 	}
 	public enum RodzajInputu
 	{
-		TextInput = 0,
-		Select,
+        [Display(Name = "Wpisywanie słowa")]
+        TextInput = 0,
+        [Display(Name = "Wybieranie z możliwych odpowiedzi")]
+        Select,
 	}
-    // Gdy Tryb jest Automatyczny, poziom trudności sesji wybierany jest na podstawie postępów
+
     public enum TrybWybieraniaSesji
     {
         Automatyczny = 0,

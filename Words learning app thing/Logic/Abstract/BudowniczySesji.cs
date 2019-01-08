@@ -30,12 +30,14 @@ namespace Words_learning_app_thing.Logic.Abstract
 
 		public void UstawStrategieNauka()
 		{
+            BudowanaSesja.TypSesji = Helpers.TypSesji.Nauka;
 			BudowanaSesja.Strategia = new LearnStrategy();
 		}
         
 		public void UstawStrategieTest()
 		{
-			BudowanaSesja.Strategia = new TestStrategy();
+            BudowanaSesja.TypSesji = Helpers.TypSesji.Test;
+            BudowanaSesja.Strategia = new TestStrategy();
 		}
 
         public abstract void UstawLatwyZestaw();

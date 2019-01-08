@@ -4,17 +4,66 @@
     ViewBag.Title = "Solve";
 }
 
-<h2>Solve</h2>
+<h2>Rozwiązywanie</h2>
 
-@if (Model.pytanieZInputemViewModel != null)
+<div>
+    Pytanie @Model.NumerPytania z @Model.LiczbaPytań
+</div>
+<br />
+<div>
+    @Html.ActionLink("Anuluj sesję", "Cancel")
+</div>
+<br />
+
+@using (Html.BeginForm())
 {
-    @Html.Partial("PartialPytanieZInputem", Model.pytanieZInputemViewModel);
-}
-else if (Model.pytanieZWyboremViewModel != null)
-{
-    @Html.Partial("PartialPytanieZWyborem", Model.pytanieZWyboremViewModel);
-}
-else
-{
-    <p>Nie ma modelu pytania</p>
+    @Html.AntiForgeryToken()
+
+    if (Model.pytanieZInputemViewModel != null)
+    {
+        @Html.Partial("PartialPytanieZInputem", Model.pytanieZInputemViewModel);
+    }
+    else if (Model.pytanieZWyboremViewModel != null)
+    {
+        @Html.Partial("PartialPytanieZWyborem", Model.pytanieZWyboremViewModel);
+    }
+    else
+    {
+        <p>Nie ma modelu pytania</p>
+    }
+
+    if (Model.pytanieZInputemViewModel != null || Model.pytanieZWyboremViewModel != null)
+    {
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @if (Model.JestPierwszymPytaniem)
+                {
+                    <input type='submit' value='Previous' class="btn btn-default" formaction='@Url.Action("Previous", "Session")' disabled="disabled" />
+                }
+                else
+                {
+                    <input type='submit' value='Previous' class="btn btn-default" formaction='@Url.Action("Previous", "Session")' />
+                }
+                <input type="submit" value="Save" class="btn btn-default" />
+
+                @if (Model.JestOstatnimPytaniem)
+                {
+                    <input type='submit' value='Next' class="btn btn-default" formaction='@Url.Action("Next", "Session")' disabled="disabled" />
+                }
+                else
+                {
+                    <input type='submit' value='Next' class="btn btn-default" formaction='@Url.Action("Next", "Session")' />
+                }
+
+                @if(Model.MozeZakonczyc)
+                {
+                    <input type='submit' value='Zakończ' class="btn btn-default" formaction='@Url.Action("Finish", "Session")' />
+                }
+                else
+                {
+                    <input type='submit' value='Zakończ' class="btn btn-default" formaction='@Url.Action("Finish", "Session")' disabled="disabled"/>
+                }
+            </div>
+        </div>
+    }
 }

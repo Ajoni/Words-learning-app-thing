@@ -27,7 +27,7 @@ namespace Words_learning_app_thing.Controllers
         }
 
         // Lists all available Words from a given language
-        // GET: Admin/Words
+        // GET: Admin/Words?languageId={languageId}
         public ActionResult Words(int languageId)
         {
             var model = new WordsViewModel()
@@ -38,7 +38,7 @@ namespace Words_learning_app_thing.Controllers
             return View(model);
         }
 
-        // GET:Admin/CreateWord
+        // GET:Admin/CreateWord?languageId={languageId}
         public ActionResult CreateWord(int languageId)
         {
             var model = new CreateSlowoViewModel()
@@ -49,7 +49,7 @@ namespace Words_learning_app_thing.Controllers
             return View(model);
         }
 
-        // POST:Admin/CreateWord
+        // POST:Admin/CreateWord?languageId={languageId}
         [HttpPost]
         public ActionResult CreateWord(CreateSlowoViewModel model)
         {

@@ -199,6 +199,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SessionController.cs" />
+    <Compile Include="ViewModels\FinishViewModel.cs" />
     <Compile Include="ViewModels\WordsViewModel.cs" />
     <Compile Include="Data\ApplicationDbContext.cs" />
     <Compile Include="Data\IUOW.cs" />
@@ -349,6 +350,8 @@
     <Content Include="Views\Admin\EditLanguage.cshtml" />
     <Content Include="Views\Admin\DetailsLanguage.cshtml" />
     <Content Include="Views\Admin\DeleteLanguage.cshtml" />
+    <Content Include="Views\Session\Finish.cshtml" />
+    <Content Include="Views\Session\FinishPartial.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

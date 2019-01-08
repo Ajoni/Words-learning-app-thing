@@ -23,6 +23,8 @@ namespace Words_learning_app_thing.Controllers
 
         private const string sessionKey = "session";
         private const string iteratorKey = "iterator";
+        private const string currentQuestionKey = "question_number";
+        private const string questionCountKey = "question_count";
 
         public ApplicationUserManager UserManager
         {
@@ -114,6 +116,8 @@ namespace Words_learning_app_thing.Controllers
 
                 Session[sessionKey] = sesja;
                 Session[iteratorKey] = sesja.GetIterator();
+                Session[currentQuestionKey] = 1;
+                Session[questionCountKey] = sesja.Pytania.Count;
 
                 return RedirectToAction("Solve");
             }
@@ -125,19 +129,26 @@ namespace Words_learning_app_thing.Controllers
         public ActionResult Solve()
         {            
             ISessionIterator iterator = (ISessionIterator)Session[iteratorKey];
+            Sesja sesja = (Sesja)Session[sessionKey];
             Pytanie pytanie = iterator.GetCurrent();
             var model = pytanie.getViewModel();
+            model.NumerPytania = (int)Session[currentQuestionKey];
+            model.LiczbaPytań = (int)Session[questionCountKey];
+            model.JestPierwszymPytaniem = !iterator.HasPrev();
+            model.JestOstatnimPytaniem = !iterator.HasNext();
+            model.MozeZakonczyc = (sesja.TypSesji == TypSesji.Nauka && model.JestOstatnimPytaniem && pytanie.CzyOdpowiedzianoPoprawnie())
+                                || (sesja.TypSesji == TypSesji.Test);
             return View(model);
         }
 
-        // This results in saving the answer
+        // This results in saving the answer.
         [HttpPost]        
         public ActionResult Solve(string OdpowiedzUzytkownika)
         {
             ISessionIterator iterator = (ISessionIterator)Session[iteratorKey];
             Pytanie pytanie = iterator.GetCurrent();
             pytanie.OdpowiedzUzytkownika = OdpowiedzUzytkownika;
-            return View(pytanie.getViewModel());
+            return RedirectToAction("Solve");
         }
 
         // POST: Session/Next
@@ -145,11 +156,14 @@ namespace Words_learning_app_thing.Controllers
         public ActionResult Next(string OdpowiedzUzytkownika)
         {
             ISessionIterator iterator = (ISessionIterator)Session[iteratorKey];
+            Sesja sesja = (Sesja)Session[sessionKey];
             Pytanie pytanie = iterator.GetCurrent();
             pytanie.OdpowiedzUzytkownika = OdpowiedzUzytkownika;
             if (iterator.HasNext())
             {
                 iterator.Next();
+                if ((pytanie.CzyOdpowiedzianoPoprawnie() && sesja.TypSesji == TypSesji.Nauka) || sesja.TypSesji == TypSesji.Test)
+                    Session[currentQuestionKey] = (int)Session[currentQuestionKey] + 1;
             }
             return RedirectToAction("Solve");
         }
@@ -164,6 +178,7 @@ namespace Words_learning_app_thing.Controllers
             if (iterator.HasPrev())
             {
                 iterator.Prev();
+                Session[currentQuestionKey] = (int)Session[currentQuestionKey] - 1;
             }
             return RedirectToAction("Solve");
         }
@@ -172,17 +187,33 @@ namespace Words_learning_app_thing.Controllers
         {
             Session[iteratorKey] = null;
             Session[sessionKey] = null;
+            Session[currentQuestionKey] = null;
+            Session[questionCountKey] = null;
             return RedirectToAction("Index");
         }
 
         // GET: Session/Finish
         public ActionResult Finish()
         {
-            // TODO: Some sort of session summary
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            Sesja sesja = (Sesja)Session[sessionKey];
+            if (sesja.TypSesji == TypSesji.Nauka)
+            {
+                user.Progress++;
+                UserManager.Update(user);
+            }
+            var model = new FinishViewModel()
+            {
+                Pytania = sesja.Pytania,
+                TypSesji = sesja.TypSesji
+            };
+
+            // Cleanup
             Session[iteratorKey] = null;
             Session[sessionKey] = null;
-
-            return View();
+            Session[currentQuestionKey] = null;
+            Session[questionCountKey] = null;
+            return View(model);
         }
 
         private IEnumerable<SelectListItem> GetJezyki()

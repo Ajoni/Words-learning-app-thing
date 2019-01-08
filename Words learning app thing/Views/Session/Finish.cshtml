@@ -1,0 +1,22 @@
+﻿@model Words_learning_app_thing.ViewModels.FinishViewModel
+@using Words_learning_app_thing.Helpers
+
+@{
+    ViewBag.Title = "Finish";
+}
+
+<h2>Zakończono sesję</h2>
+
+@switch (Model.TypSesji)
+{
+    case TypSesji.Nauka:
+        <p>Pomyślnie zakończono sesję nauki. Twoje postępy zostały zapisane. Pytania z tej sesji:</p>
+        @Html.Partial("FinishPartial", Model.Pytania)
+        break;
+    case TypSesji.Test:
+        <p>Pomyślnie zakończono test. Oto pytania, wraz z poprawnymi odpowiedziami oraz twoją odpowiedzią:</p>
+        @Html.Partial("FinishPartial", Model.Pytania)
+        break;
+    default:
+        break;
+}
