@@ -31,6 +31,11 @@ namespace Words_learning_app_thing.Data.Repositories
             return context.Slowa.Include(s => s.Jezyk).ToList();
         }
 
+        public List<Slowo> GetAll(int jezykId)
+        {
+            return (List<Slowo>)context.Slowa.Include(s => s.Jezyk).Include(s => s.Tlumaczenia).Where(w => w.Jezyk.Id == jezykId).ToList();
+        }
+
         public List<Slowo> GetAll(Jezyk jezyk)
         {
             return (List<Slowo>)context.Slowa.Include(s => s.Jezyk).Include(s => s.Tlumaczenia).Where(w => w.Jezyk.Id == jezyk.Id).ToList();

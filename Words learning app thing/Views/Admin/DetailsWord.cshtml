@@ -21,8 +21,8 @@
     </dl>
     <h3>@Html.DisplayNameFor(model => model.Tlumaczenia)</h3>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Words")
+        @Html.ActionLink("Edit", "EditWord", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Words", new { languageId = Model.Jezyk.Id })
     </p>
     <table class="table">
         <thead>

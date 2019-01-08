@@ -24,7 +24,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Jezyk, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownListFor(model => model.Jezyk, Model.Jezyki)
+            @Html.DisplayFor(model => model.Jezyk.Nazwa)
             @Html.ValidationMessageFor(model => model.Jezyk, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -38,5 +38,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Words", new { languageId = Model.JezykId})
 </div>

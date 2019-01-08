@@ -199,6 +199,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SessionController.cs" />
+    <Compile Include="ViewModels\WordsViewModel.cs" />
     <Compile Include="Data\ApplicationDbContext.cs" />
     <Compile Include="Data\IUOW.cs" />
     <Compile Include="Data\Repositories\JezykRepo.cs" />

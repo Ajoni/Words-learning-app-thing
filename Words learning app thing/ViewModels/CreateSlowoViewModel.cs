@@ -10,7 +10,7 @@ namespace Words_learning_app_thing.ViewModels
     public class CreateSlowoViewModel
     {
         public string Slowo { get; set; }
-        public int Jezyk { get; set; }
-        public IEnumerable<SelectListItem> Jezyki { get; set; }
+        public int JezykId { get; set; }
+        public Jezyk Jezyk { get; set; }
     }
 }

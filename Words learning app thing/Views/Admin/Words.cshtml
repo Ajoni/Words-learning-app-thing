@@ -1,26 +1,28 @@
-﻿@model IEnumerable<Words_learning_app_thing.Models.Slowo>
+﻿@model Words_learning_app_thing.ViewModels.WordsViewModel
 
 @{
     ViewBag.Title = "Words";
+    var words = Model.Words;
 }
 
 <h2>Words</h2>
 
 <p>
-    @Html.ActionLink("Create New", "CreateWord")
+    @Html.ActionLink("Create New", "CreateWord", new { languageId = Model.LanguageId })
+    | @Html.ActionLink("Back to Languages", "Languages")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Zawartosc)
+            Zawartość
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Jezyk)
+            Język
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Words) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Zawartosc)

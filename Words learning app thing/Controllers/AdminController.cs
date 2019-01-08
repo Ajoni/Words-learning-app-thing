@@ -26,19 +26,25 @@ namespace Words_learning_app_thing.Controllers
             return View();
         }
 
-        // Lists all available Words
+        // Lists all available Words from a given language
         // GET: Admin/Words
-        public ActionResult Words()
+        public ActionResult Words(int languageId)
         {
-            return View(UOW.SlowoRepo.GetAll());
+            var model = new WordsViewModel()
+            {
+                Words = UOW.SlowoRepo.GetAll(languageId),
+                LanguageId = languageId
+            };
+            return View(model);
         }
 
         // GET:Admin/CreateWord
-        public ActionResult CreateWord()
+        public ActionResult CreateWord(int languageId)
         {
             var model = new CreateSlowoViewModel()
             {
-                Jezyki = GetJezyki()
+                JezykId = languageId,
+                Jezyk = UOW.JezykRepo.Get(languageId)
             };
             return View(model);
         }
@@ -50,11 +56,11 @@ namespace Words_learning_app_thing.Controllers
             Slowo slowo = new Slowo()
             {
                 Zawartosc = model.Slowo,
-                Jezyk = UOW.JezykRepo.Get(model.Jezyk)
+                Jezyk = UOW.JezykRepo.Get(model.JezykId)
             };
             UOW.SlowoRepo.Add(slowo);
             UOW.SlowoRepo.Save();
-            return RedirectToAction("Words");
+            return RedirectToAction("Words", new { languageId = model.JezykId });
         }
 
         // GET:Admin/EditWord/{id}
