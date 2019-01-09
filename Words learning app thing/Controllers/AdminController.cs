@@ -59,7 +59,7 @@ namespace Words_learning_app_thing.Controllers
                 Jezyk = UOW.JezykRepo.Get(model.JezykId)
             };
             UOW.SlowoRepo.Add(slowo);
-            UOW.SlowoRepo.Save();
+            UOW.SaveChanges();
             return RedirectToAction("Words", new { languageId = model.JezykId });
         }
 
@@ -75,7 +75,7 @@ namespace Words_learning_app_thing.Controllers
         {
             Slowo slowo = UOW.SlowoRepo.Get(model.Id);
             slowo.Zawartosc = model.Zawartosc;
-            UOW.JezykRepo.Save();
+            UOW.SaveChanges();
             return RedirectToAction("Words");
         }
 
@@ -96,7 +96,7 @@ namespace Words_learning_app_thing.Controllers
         {
             Slowo toRemove = UOW.SlowoRepo.Get(slowo.Id);
             UOW.SlowoRepo.Remove(toRemove);
-            UOW.SlowoRepo.Save();
+            UOW.SaveChanges();
             return RedirectToAction("Words");
         }
 
@@ -130,7 +130,7 @@ namespace Words_learning_app_thing.Controllers
 
             slowo.Tlumaczenia.Add(tlumaczenie);
             tlumaczenie.Tlumaczenia.Add(slowo);
-            UOW.SlowoRepo.Save();
+            UOW.SaveChanges();
 
             return RedirectToAction("EditWord", new { Id = model.thisWordId });
         }
@@ -143,7 +143,7 @@ namespace Words_learning_app_thing.Controllers
             slowo.Tlumaczenia.Remove(tlumaczenie);
             tlumaczenie.Tlumaczenia.Remove(slowo);
 
-            UOW.SlowoRepo.Save();
+            UOW.SaveChanges();
             return RedirectToAction("EditWord", new { Id = wordId });
         }
 
@@ -165,7 +165,7 @@ namespace Words_learning_app_thing.Controllers
         public ActionResult CreateLanguage(Jezyk model)
         {
             UOW.JezykRepo.Add(model);
-            UOW.JezykRepo.Save();
+            UOW.SaveChanges();
             return RedirectToAction("Languages");
         }
 
@@ -181,7 +181,7 @@ namespace Words_learning_app_thing.Controllers
         {
             Jezyk jezyk = UOW.JezykRepo.Get(model.Id);
             jezyk.Nazwa = model.Nazwa;
-            UOW.JezykRepo.Save();
+            UOW.SaveChanges();
             return RedirectToAction("Languages");
         }
 
@@ -208,7 +208,7 @@ namespace Words_learning_app_thing.Controllers
                     UOW.SlowoRepo.Remove(slowo);
                 }
             UOW.JezykRepo.Remove(toRemove);
-            UOW.SlowoRepo.Save();
+            UOW.SaveChanges();
             return RedirectToAction("Languages");
         }
 

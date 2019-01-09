@@ -92,11 +92,6 @@ namespace Words_learning_app_thing.Data.Repositories
             context.Slowa.Remove(slowo);
         }
 
-        public void Save()
-        {
-            context.SaveChanges();
-        }
-
         private bool disposed = false;
 
         protected virtual void Dispose(bool disposing)
