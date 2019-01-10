@@ -110,6 +110,7 @@ namespace Words_learning_app_thing.Controllers
             {
                 slowo = slowo,
                 PossibleWords = UOW.SlowoRepo.GetAll()
+                        .Where(s => s.Jezyk.Id != slowo.Jezyk.Id)
                         .Select(x =>
                                 new SelectListItem
                                 {
