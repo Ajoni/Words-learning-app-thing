@@ -40,7 +40,7 @@ namespace Words_learning_app_thing.Logic
             var slowa = _slowoRepo.GetShuffled(0, toTake, jezykUczony);
             return slowa
                 .Select(s => (Pytanie)
-                new PytanieZWyborem(s, jezykUczony, _slowoRepo.GetWrong(s.Id, wrongToTake, jezykUczony)))
+                new PytanieZWyborem(s, jezykUczony, _slowoRepo.GetWrong(s.Tlumaczenia.Where(t =>t.Jezyk.Id ==jezykUczony.Id).SingleOrDefault().Id, wrongToTake, jezykUczony)))
                 .ToList();
         }
     }
