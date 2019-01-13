@@ -22,7 +22,7 @@ namespace Words_learning_app_thing.Helpers
 
 			var parameters = constructor
 				.GetParameters()
-				.Select(argument => _IoC.Resolve(argument.ParameterType))
+				.Select(argument => _IoC.GetService(argument.ParameterType))
 				.ToArray();
 
 			return (IController)constructor.Invoke(parameters);
