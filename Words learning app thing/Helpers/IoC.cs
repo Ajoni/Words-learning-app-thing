@@ -19,11 +19,6 @@ namespace Words_learning_app_thing.Helpers
 			types[typeof(TContract)] = typeof(TImplementation);
 		}
 
-		public void Register(Type TContract, Type TImplementation)
-		{
-			types[TContract] = TImplementation;
-		}
-
 		public object GetService(Type serviceType)
 		{
 			Type implementation = types[serviceType];
