@@ -4,10 +4,10 @@
     ViewBag.Title = "DetailsWord";
 }
 
-<h2>DetailsWord</h2>
+<h2>Detale słowa</h2>
 
 <div>
-    <h4>Slowo</h4>
+    <h4>Słowo</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -21,8 +21,8 @@
     </dl>
     <h3>@Html.DisplayNameFor(model => model.Tlumaczenia)</h3>
     <p>
-        @Html.ActionLink("Edit", "EditWord", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Words", new { languageId = Model.Jezyk.Id })
+        @Html.ActionLink("Edycja", "EditWord", new { id = Model.Id }) |
+        @Html.ActionLink("Wróć", "Words", new { languageId = Model.Jezyk.Id })
     </p>
     <table class="table">
         <thead>

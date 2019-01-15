@@ -4,11 +4,11 @@
     ViewBag.Title = "Languages";
 }
 
-<h2>Languages</h2>
+<h2>Języki</h2>
 
 <p>
-    @Html.ActionLink("Create New", "CreateLanguage")
-    | @Html.ActionLink("Back to Index", "Index")
+    @Html.ActionLink("Dodaj", "CreateLanguage")
+    | @Html.ActionLink("Wróć", "Index")
 </p>
 <table class="table">
     <tr>
@@ -28,9 +28,9 @@
             @Html.ActionLink("Words", "Words", new { languageId = item.Id })
         </td>
         <td>
-            @Html.ActionLink("Edit", "EditLanguage", new { id=item.Id }) |
-            @Html.ActionLink("Details", "DetailsLanguage", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "DeleteLanguage", new { id=item.Id })
+            @Html.ActionLink("Edycja", "EditLanguage", new { id=item.Id }) |
+            @Html.ActionLink("Detale", "DetailsLanguage", new { id=item.Id }) |
+            @Html.ActionLink("Usuń", "DeleteLanguage", new { id=item.Id })
         </td>
     </tr>
 }

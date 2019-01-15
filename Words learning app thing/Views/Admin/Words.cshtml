@@ -5,11 +5,11 @@
     var words = Model.Words;
 }
 
-<h2>Words</h2>
+<h2>Słowa</h2>
 
 <p>
-    @Html.ActionLink("Create New", "CreateWord", new { languageId = Model.LanguageId })
-    | @Html.ActionLink("Back to Languages", "Languages")
+    @Html.ActionLink("Dodaj", "CreateWord", new { languageId = Model.LanguageId })
+    | @Html.ActionLink("Wróć", "Languages")
 </p>
 <table class="table">
     <tr>
@@ -31,9 +31,9 @@
             @Html.DisplayFor(modelItem => item.Jezyk.Nazwa)
         </td>
         <td>
-            @Html.ActionLink("Edit", "EditWord", new { id = item.Id }) |
-            @Html.ActionLink("Details", "DetailsWord", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "DeleteWord", new { id = item.Id })
+            @Html.ActionLink("Edycja", "EditWord", new { id = item.Id }) |
+            @Html.ActionLink("Detale", "DetailsWord", new { id = item.Id }) |
+            @Html.ActionLink("Usuń", "DeleteWord", new { id = item.Id })
         </td>
     </tr>
 }

@@ -8,38 +8,38 @@
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
-    <h4>Change your account settings</h4>
+    <h4>Ustawienia</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>Password:</dt>
+        <dt>Hasło</dt>
         <dd>
             [
                 @if (Model.HasPassword)
                 {
-                    @Html.ActionLink("Change your password", "ChangePassword")
+                    @Html.ActionLink("Zmień hasło", "ChangePassword")
                 }
                 else
                 {
-                    @Html.ActionLink("Create", "SetPassword")
+                    @Html.ActionLink("Ustaw hasło", "SetPassword")
                 }
             ]
         </dd>
-        <dt>Progress:</dt>
+        <dt>Postęp:</dt>
         <dd>
             @Model.Progress
         </dd>
-        <dt>Difficulty choice mode:</dt>
+        <dt>Tryb wyboru trudności:</dt>
         <dd>
             @switch(Model.Mode)
             {
                 case TrybWybieraniaSesji.Automatyczny:
-                    <p>Automatic</p>
+                    <p>Automatyczny</p>
                     break;
                 case TrybWybieraniaSesji.Manualny:
-                    <p>Manual</p>
+                    <p>Ręczny</p>
                     break;
             }
-            [@Html.ActionLink("Change Mode", "ChangeMode")]
+            [@Html.ActionLink("Zmień tryb", "ChangeMode")]
         </dd>
     </dl>
 </div>

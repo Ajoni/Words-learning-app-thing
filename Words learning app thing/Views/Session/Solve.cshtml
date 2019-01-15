@@ -38,21 +38,21 @@
             <div class="col-md-offset-2 col-md-10">
                 @if (Model.JestPierwszymPytaniem)
                 {
-                    <input type='submit' value='Previous' class="btn btn-default" formaction='@Url.Action("Previous", "Session")' disabled="disabled" />
+                    <input type='submit' value='Poprzednie' class="btn btn-default" formaction='@Url.Action("Previous", "Session")' disabled="disabled" />
                 }
                 else
                 {
-                    <input type='submit' value='Previous' class="btn btn-default" formaction='@Url.Action("Previous", "Session")' />
+                    <input type='submit' value='Poprzednie' class="btn btn-default" formaction='@Url.Action("Previous", "Session")' />
                 }
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Zapisz" class="btn btn-default" />
 
                 @if (Model.JestOstatnimPytaniem)
                 {
-                    <input type='submit' value='Next' class="btn btn-default" formaction='@Url.Action("Next", "Session")' disabled="disabled" />
+                    <input type='submit' value='Kolejne' class="btn btn-default" formaction='@Url.Action("Next", "Session")' disabled="disabled" />
                 }
                 else
                 {
-                    <input type='submit' value='Next' class="btn btn-default" formaction='@Url.Action("Next", "Session")' />
+                    <input type='submit' value='Kolejne' class="btn btn-default" formaction='@Url.Action("Next", "Session")' />
                 }
 
                 @if(Model.MozeZakonczyc)
